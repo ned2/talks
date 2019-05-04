@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Snek Wrangling: pyenv + pip-tools</title>
+
+		<link rel="stylesheet" href="/css/reset.css">
+		<link rel="stylesheet" href="/css/reveal.css">
+		<link rel="stylesheet" href="/css/theme/white.css">
+        <link rel="stylesheet" href="/css/font-awesome/all.css">
+        <link rel="stylesheet" href="/css/talk.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+                    <h1>Snek Wrangling</h1>
+                    <h3>Python Installation and Package management with pyenv, pip-tools, and pipx</h3>
+                    <br>
+                    <div>
+                        <p>Ned Letcher</p>
+                        <div style="text-align:left;display:inline-block">
+                            <a href="http://nedned.net"><i class="fas fa-home"></i>&ensp;nedned.net</a>
+                            &ensp;
+                            <a href="https://twitter.com/nletcher"><i class="fab fa-twitter"></i>&ensp;@nletcher</a>
+                            &ensp;
+                            <a href="https://github.com/ned2" ><i class="fab fa-github"></i>&ensp;@ned2</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <img src="/img/snek.jpg" style="width:600px">
+                </section>
+
+                <section>
+                    <h2>Batteries Included</h2>
+                    <img src="/img/antigravity.png">
+                    <p class="small"><span class="emph">I just typed <br><span class="mono">import antigravity</span></span></p>
+                    <p class="small"><a href="https://xkcd.com/353/">https://xkcd.com/353</a></p>
+                </section>
+
+                <section>
+                    <h2>Unwrangled Sneks</h2>
+                    <img src="/img/python_environment.png">
+                    <p class="small"><a href="https://xkcd.com/1987/">https://xkcd.com/1987</a></p>
+                </section>
+
+				<section>
+                    <p>We need a snek wrangling toolchain that enables:</p>
+                    <br>
+                    <ol>
+                        <li class="fragment">Simple local installation of a range of Pythons</li>
+                        <li class="fragment">Manage creation of virtual environments</li>
+                        <li class="fragment">Manage activation of virtual environments</li>
+                        <li class="fragment">Manage project dependencies</li>
+                        <li class="fragment">Manage executables installed by packages</li>
+                    </ol>
+                </section>
+
+				<section>
+                    <h2>A Snek Wrangling Toolchain</h2> 
+                    <br>
+                    <p class="mono">pyenv + pip-tools + pipx</p>
+                </section>
+
+                <section>
+                    <h2>Scenario One</h2>
+                    <br>
+                    <p class="quote">I want to try out the requests package.</p>
+                </section>
+
+                <section>
+                    <div class="row">
+                        <div>
+                            <p>Install into system Python?</p>
+                            <pre style="width:20em"><code>$ sudo pip install requests</code></pre>
+                        </div>
+                        <img class="fragment" src="/img/drake_nope.png" style="width:350px">
+                    </div>
+		        </section>               
+
+		        <section data-background-color="red">
+                    <h3>Rule 1 of Snek Wrangling:</h2>
+                    <br>
+                    <h2 class="fragment">DO NOT TOUCH SYSTEM PYTHON</h3>
+                </section>
+                
+		        <section>
+                    <div class="row">
+                        <div>
+                            <p>Use a virtual environment</p>                            
+                            <pre style="width:20em"><code data-trim>
+                            $ python -m venv testing
+                            $ . testing/bin/activate
+                            $ pip install requests
+                            </code></pre>
+                        </div>
+                        <img src="/img/drake_yep.png" style="width:350px">
+                    </div>
+                </section>
+
+		        <section>
+                    <h2>Python Virtual Environments</h2>
+                    <p>TODO: image explaining virtual environments</p>
+                </section>
+
+				<section>
+                    <p>Virtual environments friction points:</p>
+                    <br>
+                    <ol>
+                        <li class="fragment">
+                            The activation/deactivation dance<br>
+                            <pre style="width:20em"><code data-trim>
+                            $ cd myproj
+                            $ . prod/bin/activate
+                            (prod)$ pip install requests
+                            (prod)$ deactivate
+                            </code></pre>
+
+                        </li>
+                        <li class="fragment">Virtual environment folders scattered everywhere</li>
+                        <li class="fragment">Using other Python installations</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Scenario Two</h2>
+                    <br>
+                    <p class="quote">I want to try Python 3.7.</p>
+                    <div class="fragment">
+                        <p>Or even better:</p>
+                    <p class="quote">I want to make a virtual environment based
+                        on Python 3.7.</p>
+                    </div>                    
+                </section>
+
+                <section>
+                    <div class="row">
+                        <div class="left">
+                            <ol>
+                                <li><img style="display:block" src="/img/google_python_smol.png"></li>
+                                <li>
+                                    <div>Follow installation instructions from
+                                    documentation, how-to article, blogpost, etc</div>
+                                    <br>
+                                    <ul>
+                                        <li class="fragment">Python 3.7.3</li>
+                                        <li class="fragment">Anaconda</li>
+                                        <li class="fragment">Python 2.7.15</li>
+                                        <li class="fragment">etc...</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                        <img class="fragment" src="/img/drake_nope.png" style="width:350px">
+                    </div>
+		        </section>               
+
+                <section>
+                    <div class="row">
+                        <img style="width:35%;margin-right:0.5em" src="/img/python_environment.png">
+                        <div class="left fragment">
+                            <p>Various headaches:</p>
+                            <ul>
+                                <li class="fragment">Wind up with both system and user installs</li>
+                                <li class="fragment">Mess of exectuables:
+                                    <ul>
+                                        <li>python, python3, pip, pip3</li>
+                                        <li>Which Python will they point to?</li>
+                                    </ul>
+                                </li>
+                                <li class="fragment">Almost impossible with multiple minor versions
+                                    <ul>
+                                        <li>eg 3.6.1, 3.6.5, 3.6.8</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+                </section>
+
+                <section >
+                    <div class="row">
+                        <div class="left">
+                            <p>Simple Python Version Management: pyenv</p>
+                            <p class="small"><a href="https://github.com/pyenv/pyenv">https://github.com/pyenv/pyenv</a></p>
+                        </div>
+                        <img src="/img/drake_yep.png" style="width:350px">
+                    </div>
+                </section>
+
+                
+                <section data-background-color="red">
+                    <h3>Rule 1 of Snek Wrangling:</h2>
+                    <br>
+                    <h2 class="fragment">DO NOT USE SYSTEM PYTHON</h3>
+                </section>
+
+                
+            </div> <!-- .slides -->
+        </div> <!-- .reveal -->
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+                hash: true,
+                loop: true,
+                mouseWheel: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

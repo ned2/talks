@@ -1,0 +1,191 @@
+<html>
+	<head>
+        <title>pyenv: Python version (and virtualenv) management</title>
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+        <style>
+         .reveal li {margin-bottom: 0.5em;}
+         .reveal pre {margin-bottom: 0px; margin-top: 0px; box-shadow: none}
+        </style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section>
+                    <h1>pyenv</h1>
+                    <p>Python version (and virtualenv) management</p>
+                    <br><br><br>
+                    <p><code>nedned.net</code></p>
+                </section>
+                <section>
+                    <h1 style="color:red">nope!</h1>
+                    <code>$ sudo pip install requests</code>
+                </section>
+				<section>
+                    <h3>Who has done this?</h3>
+                    <br><br>
+                    <p><code>$ source myvenv/bin/activate</code></p>
+                </section>
+                <section>
+                    <h3>Who uses a tool to manage venvs?</h3>
+                    <br>
+                    <ul>
+                        <li class="fragment fade-up">My IDE does it for me</li>
+                        <li class="fragment fade-up">Conda</li>
+                        <li class="fragment fade-up">virtualenvwrapper</li>
+	                    <li class="fragment fade-up">Pipfile</li>
+	                    <li class="fragment fade-up">Pyenv</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>pyenv features</h2>
+
+                    <p>1. Install and manage local Python versions</p>
+
+                    <pre class="fragment fade-up"><code>
+$ pyenv install 3.6.2
+$ pyenv install 2.7.13
+$ pyenv install pypy3.5-5.8.0
+                    </code></pre>
+
+                    <pre class="fragment fade-up"><code>
+$ pyenv global 3.6.2 2.7.13
+                    </pre></code>
+
+                    <pre class="fragment fade-up"><code>
+$ pyenv versions
+
+system
+* 3.6.2
+* 2.7.13
+  pypy3.5-5.8.0
+                    </code></pre>
+
+                </section>
+                <section>
+                    <h2>pyenv features</h2>
+                    <p>2. Create and manage venvs</p>
+                    <pre class="fragment fade-up"><code>
+$ pyenv virtualenv 3.6.2 demo
+$ pyenv virtualenv 2.7.13 legacy
+                    </pre></code>
+                    
+                    <pre class="fragment fade-up"><code>
+$ pyenv versions
+                    </pre></code>
+
+                    <pre class="fragment fade-up"><code>                    
+system
+* 3.6.2
+* 2.7.13
+  pypy3.5-5.8.0
+  3.6.2/envs/demo 
+  2.7.13/envs/legacy
+  demo
+  legacy
+                    </pre></code>
+                </section>
+                <section>
+                    <h2>pyenv features</h2>
+                    <p>3. Streamline activation of versions/venvs</p>
+                    <pre class="fragment fade-up"><code>
+if SHELL: 
+    ==> use version specified by $PYENV_VERSION
+                    </pre></code>
+
+                    <pre class="fragment fade-up"><code>
+elif LOCAL:
+    ==> climb directory tree and use version specified
+        by any '.python-version' file
+                    </pre></code>
+
+                    <pre class="fragment fade-up"><code>
+elif GLOBAL:
+   ==> use globally specified Python
+
+                    </pre></code>
+                    <pre class="fragment fade-up"><code>
+else:
+   ==> use system Python
+                    </pre></code>
+
+                </section>
+                <section>
+                    <pre><code data-noescape>
+$ mkdir newproj
+$ echo "demo" > newproj/.python-version
+$ cd newproj
+<span style="color:blue">(demo)</span> $ python
+
+Python 3.6.2 (default, Jul 30 2017, 16:06:48)
+[GCC 6.3.0 20170406] on linux
+Type "help", "copyright", "credits" or "license" for more...
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>pyenv features</h2>
+                    <p>4. Gracefully locate appropriate executables</p>
+
+                    <pre><code>
+$ echo $PATH
+/home/nedned/.pyenv/shims:/usr/local/bin:/usr/bin:/bin
+
+$ ls -l ~/.pyenv/shims
+python
+python2
+python3
+pip
+jupyter
+...
+                    </code></pre>
+
+                </section>
+                <section>
+                    <h3>Dependency Management?</h3>
+                    <p><code>pyenv + pip-tools == :)</code></p>
+                    <pre><code>
+requirements.in
+-----------------
+requests
+flask
+gunicorn
+
+$ pip-compile
+
+requirements.txt
+------------------
+certifi==2017.7.27.1      # via requests
+chardet==3.0.4            # via requests
+click==6.7                # via flask
+flask==0.12.2
+gunicorn==19.7.1
+idna==2.5                 # via requests
+itsdangerous==0.24        # via flask
+jinja2==2.9.6             # via flask
+markupsafe==1.0           # via jinja2
+requests==2.18.3
+urllib3==1.22             # via requests
+werkzeug==0.12.2          # via flask                
+                    </pre></code>
+                </section>
+                <section>
+                    <h3>Conclusion</h3>
+                    <p>pyenv makes these things easy:</p>
+                    <br>
+                    <ol>
+                        <li>Install/manage local Python version/venvs</li>
+                        <li>Frictionless activation of versions</li>
+                    </ol>
+                </section>
+            </div>
+		</div>
+		<script src="js/reveal.js"></script>
+		<script>
+		 Reveal.initialize({
+             slideNumber: true,
+             loop: true
+         });
+		</script>
+	</body>
+</html>

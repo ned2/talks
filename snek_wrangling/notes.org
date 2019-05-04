@@ -1,0 +1,51 @@
+* description
+Snek Wrangling: Python Installation and Package management with pyenv,
+pip-tools, and pipx
+
+Python's "batteries included" philosophy means it comes bundled with a rich
+standard library offering a powerful set of accelerators. When it comes to
+managing Python installations and project dependencies, however, the builtin
+tooling leaves something to be desired.
+
+Virtual environments are crucial for isolating your project dependencies,
+however they can be frustrating to work with without any supporting
+tooling. pip, Python's package manager, is great, but it does not provide a
+built-in means for defining and tracking project requirements separate from
+downstream dependencies. Additionally, after some experimentation and a few
+projects later, its all too easy to get yourself into a spaghetti-like mess of
+various Python installations that can step on each other's toes.
+
+In this talk, I will describe a toolchain containing the packages pyenv,
+pip-tools, and pipx, that together help smooth over these challenges and remove
+friction from your Python development experience.
+* motivating scenarios
+** I want to try out package X:
+*** tempting to: sudo pip install X. this is bad. don't do this
+*** don't use your system python. ever. it's for your system. not for you.
+*** use virtualenv's 
+*** limitations
+**** need to activate/deactivate
+**** only system Python
+** I need to install Python 3.7, Anaconda, pypy 
+*** eg to try out data classes, 
+*** tempting to install each program separately
+**** leads to a mess of executables
+**** which Python will I run when when I type python, 
+*** solution: use pyenv
+**** easy installation of large range of Python installation
+**** provides sensible management of activating installations/virtualenvs 
+**** also makes managing virtualenvs easier
+** My project needs a collection of packages locked to specific versions
+*** tempting to use $ pip freeze > requirements.txt
+*** better: use pip-tools
+*** separates constraints from state
+** I have a number of different projects that
+*** use different Python versions
+*** have a different set of dependencies for each project
+==> pyenv + pip-tools
+** I need to install package that provides a command line tool (eg visidata)
+*** better: create a virtualenv
+**** challenges
+***** need to activate virtualenv to use commands
+***** packages can conflict (I'm looking at you aws-shell/ipython)
+*** solution: use pipx

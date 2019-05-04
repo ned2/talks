@@ -1,0 +1,28 @@
+.reveal section a {color: inherit}
+
+.small {font-size: .5em}
+
+.left {
+    display: inline-block;
+    text-align: left;
+}
+
+.mono {font-family: mono}
+
+.emph {font-style: italic}
+
+.reveal .quote {
+    font-style: italic;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.2);
+    width: 700px;
+    margin: 1em auto;
+    padding: 0.5em;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
