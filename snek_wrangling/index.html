@@ -313,9 +313,9 @@ $ pip install -r requirements.txt
                     <p>Problems with using pip freeze</p>
                     <br>
                     <ol>
-                        <li class="fragment">TODO</li>
-                        <li class="fragment">TODO</li>
-                        <li class="fragment">TODO</li>
+                        <li class="fragment">No separation between want we <span class="emph">want</span> installed and what <span class="emph">is</span> installed</li>
+                        <li class="fragment">Explicit dependencies and third party dependencies collapsed together</li>
+                        <li class="fragment">Can't easily uninstall packages we installed ad-hoc</li>
                     </ol>
                 </section>
 
@@ -398,6 +398,32 @@ $ pip-sync
                     </ul>
 		        </section>               
                 
+                <section>
+                    <div class="row">
+                        <div class="left">
+                            <p>pipx: Execute binaries from Python packages in isolated environments</p>
+                            <p class="small"><a href="https://github.com/pipxproject/pipx">https://github.com/pipxproject/pipx</a></p>
+                        </div>
+                        <img src="/img/drake_yep.png" style="width:350px">
+                    </div>
+                </section>
+
+                <section>
+                    <p>pipx installs each package (and their executables) into separate virtual environments</p>
+                    <img class="clean" src="/img/pipx_venvs.svg">
+                </section>
+
+                <section>
+                    <p>Snek wrangling toolchain checklist</p>
+                    <br>
+                    <ol id="checklist" class="med">
+                        <li>Simple local installation of a range of Pythons<span class="fragment">&nbsp;<i class="fas fa-check"></i>(pyenv)</span></li>
+                        <li>Manage creation of virtual environments<span class="fragment">&nbsp;<i class="fas fa-check"></i>(pyenv)</span></li>
+                        <li>Manage activation of virtual environments<span class="fragment">&nbsp;<i class="fas fa-check"></i>(pyenv)</span></li>
+                        <li>Manage project dependencies<span class="fragment">&nbsp;<i class="fas fa-check"></i>(pip-tools)</span></li>
+                        <li>Manage executables installed by packages<span class="fragment">&nbsp;<i class="fas fa-check"></i>(pipx)</span></li>
+                    </ol>
+                </section>
 
                 
             </div> <!-- .slides -->
