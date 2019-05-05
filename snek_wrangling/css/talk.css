@@ -1,6 +1,7 @@
 .reveal section a {color: inherit}
 
 .small {font-size: .5em}
+.med {font-size: .75em}
 
 .left {
     display: inline-block;
@@ -10,6 +11,8 @@
 .mono {font-family: mono}
 
 .emph {font-style: italic}
+
+.reveal li {margin-bottom: 0.5em}
 
 .reveal .quote {
     font-style: italic;
@@ -26,3 +29,38 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.flex-stretch{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;    
+}
+
+.reveal img.clean{
+    box-shadow: none;
+    border: none;
+}
+
+#pyenv-versions img {
+    height: 5em;
+}
+
+.box {border: 5px solid black}
+
+.shim-switch {
+    width: 8em;
+    margin-right: 2em;
+}
+
+#pyenv-shims p {
+    font-size: 0.75em;
+    text-align: left;
+}
+
+.shim-rows {
+    font-size: 0.7em;
+    text-align: left;
+}
+
+.shim-rows .exe {width: 5em}
+.shim-rows .path {width: 18em}
