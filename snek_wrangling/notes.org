@@ -1,3 +1,14 @@
+* improvements
+** need to make a slide on putting it all together
+*** select a single Python version with pyenv to use as your global version 
+*** install pipx into it
+*** then set pyenv local some-version your-global-version
+this means pipx is always available 
+*** ./pyenv/bin should go before .local/bin  
+so that project-specific executables will take precedence
+*** pip-tools needs to be installed into every virtualenv that needs it
+(can't track it inside requirements.in)
+(can't install it into the shared global version, other it syncs to that version)
 * description
 Snek Wrangling: Python Installation and Package management with pyenv,
 pip-tools, and pipx

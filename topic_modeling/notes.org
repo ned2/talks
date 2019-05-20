@@ -1,0 +1,52 @@
+* outline
+** Analysing text recap
+*** machine learning approaches require us to derive a vector representation of text
+*** solution: BOW representation -- tokenisation, frequency count, TF-IDF weighting
+*** limitations
+**** information is only shared when documents share the same tokens
+**** do not capture similar meanings of different tokens 
+**** illustrated by low cosine similarity of similar documents that have small vocab overlap
+**** we want an approach that captures the meaning of documents 
+*** solution: smaller dimensional vectors that capture the underlying semantic components of docs
+** different strategies for realising this:
+*** LSA
+*** LDiA
+*** Neural approaches: Doc2Vec, RNNs (eg LSTMs)
+** Topic modeling
+*** core insight: documents can be represented as topic vectors
+*** illustrative example of a topic vector (eg some text and a vector)
+*** two core techniques used in NLP: LSA and LDA
+** LSA
+*** show a term matrix
+*** the aim is to perform dimensionality reduction into topic vectors
+*** this done using PCA/SVD
+*** vaguely describe the process
+*** in scikit-learn you can use PCA, truncated SVD
+-- truncatedSVD is the way to go. works on sparce matrices. everyone recommends this one. 
+** LDiA
+*** illustration of a document being composed of topics and words
+*** we use some maths to reverse engineer the topics 
+** LDA vs LDiA
+*** both produce topic vectors for documents. when to use them?
+*** LDiA
+**** produces more human interpretable topics
+**** we can pyLDAVis to visualise
+*** LSA
+**** computaitonally cheaper
+**** simpler model -- linear transforms
+*** Suggestions:
+**** use LDiA when interpretability matters
+***** understanding a document collection
+***** summarisation
+**** use LSA for dimensionality reduction in combination with other models 
+***** eg K-means, for semantic clustering 
+***** eg SVM, to improve performance and reduce chances of overfitting
+***** (alternatively can also turn to neural approaches such as Doc2Vec/LSTMs)
+** LDiA -- a deeper dive
+*** interpreting your topics -- pyLDAvis
+*** how to select number of topics
+*** applications
+**** exploratory analysis of a collection/learning what its about -- Hansard/Yelp data
+**** can use as a classifier
+**** comparing with existing labels (Telstra example)
+**** summarisation

@@ -1,0 +1,53 @@
+{% macro doc_term_vector(doc) -%}
+<table>
+    <thead>
+        {% for token in doc.tokens %}
+        <th>{{ token }}</th>
+        {% endfor %}
+    </thead>
+    <tbody>
+        <tr>
+            {% for count in doc.tokens.values() %}        
+            <td>{{ count }}</td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+{%- endmacro %}
+
+
+{% macro doc_term_matrix(corpus, tfidf=False) -%}
+<table>
+    <thead>
+        {%- for token in corpus.vocab %}
+        <th>{{ token }}</th>
+        {%- endfor %}
+    </thead>
+    <tbody>
+        {%- for doc in corpus %}
+        <tr>
+            <td>{{ doc }}</td>
+            {%- for value in doc.vector(tfidf=tfidf) %}
+            <td>{{ value }}</td>
+            {%- endfor %}
+        </tr>
+        {%- endfor %}
+    </tbody>
+</table>
+{%- endmacro %}
+
+
+<section>
+    <h2>Vectorising Text</h2>
+    <pre class="fragment">{{ corpus[0].text }}</pre>
+    <pre class="fragment">{{ corpus[0].cleaned_text }}</pre>
+    {{ doc_term_vector(corpus[0]) }}
+</section>
+
+<section>
+    {{ doc_term_matrix(corpus) }}
+</section>
+
+<section>
+    {{ doc_term_matrix(corpus, tfidf=True) }}
+</section>

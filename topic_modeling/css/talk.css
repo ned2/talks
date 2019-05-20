@@ -1,0 +1,68 @@
+.reveal section a {color: inherit}
+
+.small {font-size: .5em}
+.med {font-size: .75em}
+
+.left {
+    display: inline-block;
+    text-align: left;
+}
+
+.mono {font-family: mono}
+
+.emph {font-style: italic}
+
+.reveal li {margin-bottom: 0.5em}
+
+.reveal .quote {
+    font-style: italic;
+    background-color: #d8d8d8;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.2);
+    width: 700px;
+    margin: 1em auto;
+    padding: 0.5em;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-stretch{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;    
+}
+
+.reveal img.clean{
+    box-shadow: none;
+    border: none;
+}
+
+#pyenv-versions img {
+    height: 5em;
+}
+
+.box {border: 5px solid black}
+
+.shim-switch {
+    width: 8em;
+    margin-right: 2em;
+}
+
+#pyenv-shims p {
+    font-size: 0.75em;
+    text-align: left;
+}
+
+.shim-rows {
+    font-size: 0.7em;
+    text-align: left;
+}
+
+.shim-rows .exe {width: 5em}
+.shim-rows .path {width: 18em}
+
+#checklist i {color: green}
