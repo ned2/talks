@@ -4,3 +4,7 @@ voila
 jupyterlab
 ipywidgets
 matplotlib
+holoviews[all]
+altair
+vega_datasets
+seaborn
