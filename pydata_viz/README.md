@@ -17,13 +17,12 @@ a fresh virtual environment before installing the Python dependencies:
 
     pip install -r requirements.txt
 
-If you are using Jupyer Lab (which is recommended!) you will need to install the
-following JupyterLab extensions. You will need a working Node.js installation
-for this, which isn't documented here as this will vary depending on your OS.
+If you are using Jupyter Lab (which is recommended!) you will need to install
+the following JupyterLab extensions. You will need a working Node.js
+installation for this, which isn't documented here as this will vary depending
+on your OS.
 
 
-    jupyter labextension install jupyterlab-plotly@4.7.1
-    jupyter labextension install @pyviz/jupyterlab_pyviz
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager
-    jupyter labextension install @jupyterlab/vega5-extension
+    jupyter labextension install jupyterlab-plotly@4.14.3
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager plotlywidget@4.14.3
     
