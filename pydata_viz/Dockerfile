@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     python3.9 \
     python3.9-dev \
     python3.9-venv \
+    wget \
     # Cartopy dependencies
     libgeos-dev \
     libproj-dev \
